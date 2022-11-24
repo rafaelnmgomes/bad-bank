@@ -20,7 +20,7 @@ function Deposit() {
       return newErrors;
     }
 
-    if (user.amount < 0) {
+    if (amount < 0) {
       newErrors.amount = "Please enter a positive amount";
       return newErrors;
     }
