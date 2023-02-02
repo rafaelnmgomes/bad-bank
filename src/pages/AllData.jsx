@@ -1,10 +1,8 @@
 import React from "react";
-import { HistoryContext } from "./Contexts";
+import { HistoryContext } from "../context/Contexts";
 
 function AllData() {
   const { history } = React.useContext(HistoryContext);
-
-  console.log(history);
 
   return (
     <table className="table">

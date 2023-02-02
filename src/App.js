@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AllData from "./AllData";
+import AllData from "./pages/AllData";
 import "./App.css";
-import CreateAccount from "./CreateAccount";
-import Deposit from "./Deposit";
-import Home from "./Home";
-import Navbar from "./Navbar";
-import { HistoryContext, UserContext } from "./Contexts";
-import Withdraw from "./Withdraw";
+import CreateAccount from "./pages/CreateAccount";
+import Deposit from "./pages/Deposit";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import { HistoryContext, UserContext } from "./context/Contexts";
+import Withdraw from "./pages/Withdraw";
 
 function App() {
   const [user, setUser] = React.useState({

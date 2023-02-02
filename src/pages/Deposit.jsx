@@ -1,19 +1,17 @@
 import React from "react";
-import { HistoryContext, UserContext } from "./Contexts";
+import { HistoryContext, UserContext } from "../context/Contexts";
 
-function Withdraw() {
+function Deposit() {
   const [amount, setAmount] = React.useState();
   const [error, setError] = React.useState(null);
   const { user, setUser } = React.useContext(UserContext);
   const { history, setHistory } = React.useContext(HistoryContext);
 
-  console.log(history);
-
   const validateForm = () => {
     const newErrors = {};
 
     if (!user.email && !user.name) {
-      newErrors.create = "Please create a user before withdrawing";
+      newErrors.create = "Please create a user before depositing";
       return newErrors;
     }
 
@@ -24,11 +22,6 @@ function Withdraw() {
 
     if (amount < 0) {
       newErrors.amount = "Please enter a positive amount";
-      return newErrors;
-    }
-
-    if (user.balance < amount) {
-      newErrors.amount = "The amount is over the balance of the account";
       return newErrors;
     }
 
@@ -47,13 +40,13 @@ function Withdraw() {
 
       const newUser = {
         ...user,
-        balance: parseInt(user.balance) - parseInt(amount),
+        balance: parseInt(user.balance) + parseInt(amount),
       };
 
       const newHistory = [
         ...history,
         {
-          action: "withdraw",
+          action: "deposit",
           amount: amount,
           name: user.name,
         },
@@ -66,19 +59,19 @@ function Withdraw() {
 
   return (
     <div>
-      <div>Withdraw</div>
+      <div>Deposit</div>
       <div className="form-group">
         <label htmlFor="Balance">Balance</label>
         <div>{user.balance}</div>
       </div>
       <form>
         <div className="form-group">
-          <label htmlFor="WithdrawAmount">Withdraw amount</label>
+          <label htmlFor="DepositAmount">Deposit amount</label>
           <input
             type="number"
             className="form-control"
-            id="WithdrawAmount"
-            placeholder="Withdraw amount"
+            id="DepositAmount"
+            placeholder="Deposit amount"
             onChange={(e) => setAmount(e.target.value)}
           />
           {error && error.amount && (
@@ -98,11 +91,11 @@ function Withdraw() {
           onClick={handleSubmit}
           disabled={!amount}
         >
-          Withdraw
+          Deposit
         </button>
       </form>
     </div>
   );
 }
 
-export default Withdraw;
+export default Deposit;

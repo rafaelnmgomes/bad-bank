@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../src/images/bank.png";
+import Logo from "../images/bank.png";
 
 function Home() {
   return (
